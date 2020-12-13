@@ -1,0 +1,44 @@
+class Qeque_byJ:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def add_rear(self, item):
+        self.items.append(item)
+
+    def add_front(self, item):
+        self.items.insert(0, item)
+
+    def remove_rear(self):
+        return self.items.pop()
+
+    def remove_front(self):
+        return self.items.pop(0)
+
+    def size(self):
+        return len(self.items)
+
+    def show(self):
+        return self.items
+
+
+def P_T(text):
+    P_T1 = Qeque_byJ()
+    for string in text:
+        P_T1.add_rear(string)
+
+    status = True
+
+    while P_T1.size() > 1 and status:
+        front = P_T1.remove_front()
+        end = P_T1.remove_rear()
+
+        if front != end:
+            status = False
+    return status
+
+
+print(P_T("abcdefg"))
+print(P_T("radar"))
