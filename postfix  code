@@ -1,0 +1,43 @@
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def push(self, items):
+        self.items.append(items)
+
+    def pop(self):
+        return self.items.pop()
+
+    def peek(self):
+        return self.items[len(self.items) - 1]
+
+    def size(self):
+        return len(self.items)
+
+def postfix_tomon(text_input):
+    stack_tomon = Stack()
+    for str in text_input:
+        if str in "0123456789" :
+            stack_tomon.push(int(str))
+        else:
+            str1 = stack_tomon.pop()
+            str2 = stack_tomon.pop()
+
+            math = do_math(str,str2,str1)
+            stack_tomon.push(math)
+    return  stack_tomon.pop()
+def do_math(op,n1,n2) :
+    if op == "+":
+        return n1 + n2
+    elif op == "-":
+        return n1-n2
+    elif op == "*":
+        return n1 * n2
+    else :
+        return n1 / n2
+
+
+print(postfix_tomon("22*45*+"))
